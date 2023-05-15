@@ -33,7 +33,7 @@ public class ControladorVerProductos extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		ModeloProducto modeloProducto = new ModeloProducto();
-//		ArrayList<Producto> productos = modeloProducto.getProductos();
+		ArrayList<Producto> productos = modeloProducto.getProductos();
 		
 		request.setAttribute("productos" , productos);
 		

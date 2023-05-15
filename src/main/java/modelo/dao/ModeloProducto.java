@@ -40,7 +40,7 @@ public class ModeloProducto extends Conector{
 			e.printStackTrace();
 		}
 		
-	
+		return null;
 		
 	}
 	
