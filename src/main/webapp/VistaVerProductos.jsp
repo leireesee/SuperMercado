@@ -14,7 +14,7 @@
 <body>
 	
 		
-		<table class="table table-striped"
+		<table class="table table-striped">
 		
 			  <thead>
 			    <tr>
