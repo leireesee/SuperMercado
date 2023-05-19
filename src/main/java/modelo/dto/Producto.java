@@ -1,6 +1,6 @@
 package modelo.dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Producto {
 	
@@ -10,7 +10,7 @@ public class Producto {
 	private int cantidad;
 	private double precio;
 	private Date caducidad;
-	private int idSeccion;
+	private Seccion seccion;
 	
 	/*GETTERS/SETTERS*/
 	
@@ -50,11 +50,19 @@ public class Producto {
 	public void setCaducidad(Date caducidad) {
 		this.caducidad = caducidad;
 	}
-	public int getIdSeccion() {
-		return idSeccion;
+	public Seccion getSeccion() {
+		return seccion;
 	}
-	public void setIdSeccion(int idSeccion) {
-		this.idSeccion = idSeccion;
+	public void setSeccion(Seccion seccion) {
+		this.seccion = seccion;
 	}
+	
+	@Override
+	public String toString() {
+		return "Producto [id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + ", cantidad=" + cantidad
+				+ ", precio=" + precio + ", caducidad=" + caducidad + ", seccion=" + seccion + "]";
+	}
+	
+	
 	
 }

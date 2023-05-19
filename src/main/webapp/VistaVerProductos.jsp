@@ -24,6 +24,9 @@
 			      <th scope="col">Cantidad</th>
 			      <th scope="col">Precio</th>
 			      <th scope="col">Canducidad</th>
+			      <th scope="col">ID Seccion</th>
+			      <th scope="col">Nombre Seccion</th>
+			      <th scope="col">Opciones</th>
 			    </tr>
 			  </thead>
 			  
@@ -37,6 +40,15 @@
 			      <td>${producto.cantidad}</td>
 			      <td>${producto.precio}</td>
 			      <td>${producto.caducidad}</td>
+			      <td>${producto.seccion.id}</td>
+			      <td>${producto.seccion.nombre}</td>
+			      <td>
+			      
+			      	<button type="button" class="btn btn-success">Modificar</button>
+			      	
+			      	<button type="button" class="btn btn-danger">Eliminar</button>
+			      
+			      </td>
 			    </tr>
 			  </tbody>
 			  
