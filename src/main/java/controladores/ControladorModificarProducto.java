@@ -2,8 +2,6 @@ package controladores;
 
 import java.io.IOException;
 
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,19 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.dao.ModeloProducto;
+import modelo.dao.ModeloSeccion;
 import modelo.dto.Producto;
 
 /**
- * Servlet implementation class ControladorVerProductos
+ * Servlet implementation class ControladorModificarProducto
  */
-@WebServlet("/ControladorVerProductos")
-public class ControladorVerProductos extends HttpServlet {
+@WebServlet("/ControladorModificarProducto")
+public class ControladorModificarProducto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ControladorVerProductos() {
+    public ControladorModificarProducto() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,19 +32,23 @@ public class ControladorVerProductos extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ModeloProducto modeloProducto = new ModeloProducto();
-		ArrayList<Producto> productos = modeloProducto.getProductos();
+		ModeloSeccion modeloSeccion = new ModeloSeccion();
 		
-		request.setAttribute("productos" , productos);
+		request.setAttribute("secciones", modeloSeccion.getSecciones());
 		
-		request.getRequestDispatcher("VistaVerProductos.jsp").forward(request, response);
+		request.getRequestDispatcher("FormularioModificar.jsp").forward(request, response);
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		
+		Producto producto = new Producto();
+		ModeloProducto modeloProducto = new ModeloProducto();
+		
+		producto = modeloProducto.get
 	}
 
 }

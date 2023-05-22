@@ -1,6 +1,7 @@
 package modelo.dao;
 
 import java.sql.Date;
+
 import java.sql.PreparedStatement;
 
 import java.sql.ResultSet;
@@ -8,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import modelo.dto.Producto;
+import modelo.dao.ModeloSeccion;
 
 public class ModeloProducto extends Conector{
 	
@@ -99,6 +101,65 @@ public class ModeloProducto extends Conector{
 		}
 		
 		return null;
+	}
+	
+	public void modificarProducto(Producto producto) {
+		
+		String sentenciaModificarProducto = "UPDATE productos SET codigo = ?, nombre = ?, cantidad = ?, precio = ?, caducidad = ?, seccion = ? WHERE id = ?";
+		
+		try {
+			
+			PreparedStatement st = this.conexion.prepareStatement(sentenciaModificarProducto);
+			
+			st.setString(1, producto.getCodigo());
+			st.setString(2, producto.getNombre());
+			st.setInt(3, producto.getCantidad());
+			st.setDouble(4, producto.getPrecio());
+			st.setDate(5, new Date(producto.getCaducidad().getTime()));
+			st.setInt(6, producto.getSeccion().getId());
+			
+			st.setInt(7, producto.getId());
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public Producto getProducto(int id) {
+		
+		String sentenciaGetProducto = "SELET * FROM productos WHERE id = ?";
+		Producto producto = new Producto();
+		ModeloSeccion modeloSeccion = new ModeloSeccion();
+		
+		try {
+			
+			PreparedStatement st = this.conexion.prepareStatement(sentenciaGetProducto);
+			
+			st.setInt(1, id);
+			
+			ResultSet rst = st.executeQuery();
+			
+			rst.next();
+			
+			producto.setId(rst.getInt("id"));
+			producto.setNombre(rst.getString("codigo"));
+			producto.setNombre(rst.getString("nombre"));
+			producto.setCantidad(rst.getInt("cantidad"));
+			producto.setPrecio(rst.getDouble("precio"));
+			producto.setCaducidad(rst.getDate("caducidad"));
+			producto.setSeccion(modeloSeccion.getSeccion(rst.getInt("id_seccion")));
+			
+			return producto;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+		
 	}
 	
 }

@@ -52,9 +52,9 @@
 			      <td>${producto.seccion.nombre}</td>
 			      <td>
 			      
-			      	<button type="button" class="btn btn-success">Modificar</button>
+			      <a href="ControladorModificarProducto"><button type="button" class="btn btn-success">Modificar</button></a>
 			      	
-			      	<button type="button" class="btn btn-danger">Eliminar</button>
+			      <a href="ControladorEliminarProducto"><button type="button" class="btn btn-danger">Eliminar</button></a>
 			      
 			      </td>
 			    </tr>
