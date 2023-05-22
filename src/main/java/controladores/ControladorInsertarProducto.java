@@ -3,6 +3,7 @@ package controladores;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -64,7 +65,32 @@ public class ControladorInsertarProducto extends HttpServlet {
 		}
 		producto.setSeccion(modeloSeccion.getSeccion(Integer.parseInt(request.getParameter("seccion"))));
 		
-		modeloProducto.insertarProducto(producto);
+		if (modeloProducto.verificarCodigoProducto(producto.getCodigo())!=null) {
+			
+			request.setAttribute("mensaje", "El código ya existe!");
+			doGet(request, response);
+			
+		} else if (producto.getPrecio() < 0 || producto.getCantidad() < 0){
+			
+			request.setAttribute("mensaje", "Cantidad o precio incorrectos!");
+			doGet(request, response);
+			
+		} else if (producto.getCaducidad().before(new Date())) {
+			
+			request.setAttribute("mensaje", "Fecha incorrecta!");
+			doGet(request, response);
+			
+		} else if (producto.getSeccion().getId() == 0) {
+			
+			request.setAttribute("mensaje", "Elige una seccion!");
+			doGet(request, response);
+			
+		} else {
+			
+			modeloProducto.insertarProducto(producto);
+			
+		}
+		
 		
 		request.getRequestDispatcher("ControladorVerProductos").forward(request, response);
 		

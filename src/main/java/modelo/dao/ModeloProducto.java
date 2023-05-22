@@ -63,6 +63,7 @@ public class ModeloProducto extends Conector{
 			st.setDate(5, new Date(producto.getCaducidad().getTime()));
 			st.setInt(6, producto.getSeccion().getId());
 			
+			
 			st.execute();
 			
 			
@@ -71,6 +72,33 @@ public class ModeloProducto extends Conector{
 		}
 		
 		
+	}
+	
+	
+	public String verificarCodigoProducto(String codigo) {
+		
+		String sentenciaVerificarCodigoProducto = "SELECT * FROM productos WHERE codigo = ?";
+		
+		Producto producto = new Producto();
+		
+		try {
+			PreparedStatement st = this.conexion.prepareStatement(sentenciaVerificarCodigoProducto);
+			
+			st.setString(1, codigo);
+			
+			ResultSet rst = st.executeQuery();
+			
+			rst.next();
+			
+			
+			return rst.getString("codigo");
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 }

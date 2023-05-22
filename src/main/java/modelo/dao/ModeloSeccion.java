@@ -15,7 +15,7 @@ public class ModeloSeccion extends Conector{
 		Seccion seccion = new Seccion();
 		
 		try {
-			PreparedStatement st = this.conexion.prepareStatement(sentenciaGetSeccion);
+			PreparedStatement st = super.conexion.prepareStatement(sentenciaGetSeccion);
 			
 			st.setInt(1, idSeccion);
 			
@@ -63,6 +63,7 @@ public class ModeloSeccion extends Conector{
 				secciones.add(seccion);
 				
 			}
+			
 			
 			return secciones;
 			

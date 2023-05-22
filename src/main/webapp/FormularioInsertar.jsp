@@ -24,7 +24,15 @@
 <body>
 
 	<div style="width: 500px; box-shadow:0px 0px 15px lightblue; padding: 30px">
-
+	
+	<h1>Insertar producto</h1>
+	
+	<br> 
+	
+	<c:if test="${mensaje ne null}">
+		<p style="padding: 15px; background-color: pink; border: 1px solid red; color: red">${mensaje}</p>
+	</c:if>
+	
 		<form action="ControladorInsertarProducto" method="post">
 			<div class="mb-3">
 				<label for="exampleInputEmail1" class="form-label">Código</label>
@@ -54,7 +62,7 @@
 			<div class="mb-3">
 				<label for="exampleInputPassword1" class="form-label">Seccion</label>
 				<select class="form-select" aria-label="Default select example" name="seccion">
-					  					  
+					  <option value="0"></option>
 					  <c:forEach items="${secciones}" var="seccion">
 					  	<option value="${seccion.id}">${seccion.nombre}</option>
 					  </c:forEach>

@@ -13,6 +13,14 @@
 </head>
 <body>
 	
+	<br>
+	<div class="d-grid gap-2 d-md-flex justify-content-md-start">
+  		<a href="ControladorInsertarProducto"><button class="btn btn-primary" type="button">Insertar Producto</button></a>
+	</div>
+	
+	<br>
+	<br>
+	
 		
 		<table class="table table-striped">
 		
