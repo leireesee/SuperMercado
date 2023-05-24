@@ -1,6 +1,9 @@
 package controladores;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,6 +39,13 @@ public class ControladorModificarProducto extends HttpServlet {
 		
 		request.setAttribute("secciones", modeloSeccion.getSecciones());
 		
+		Producto producto = new Producto();
+		ModeloProducto modeloProducto = new ModeloProducto();
+		
+		producto = modeloProducto.getProducto(Integer.parseInt(request.getParameter("id")));
+		
+		request.setAttribute("producto", producto);
+		
 		request.getRequestDispatcher("FormularioModificar.jsp").forward(request, response);
 		
 	}
@@ -45,10 +55,33 @@ public class ControladorModificarProducto extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Producto producto = new Producto();
 		ModeloProducto modeloProducto = new ModeloProducto();
+		ModeloSeccion modeloSeccion = new ModeloSeccion();
 		
-		producto = modeloProducto.get
+		Producto producto = new Producto();
+		
+		producto.setId(Integer.parseInt(request.getParameter("id")));
+		producto.setCodigo(request.getParameter("codigo"));
+		producto.setNombre(request.getParameter("nombre"));
+		producto.setCantidad(Integer.parseInt(request.getParameter("cantidad")));
+		producto.setPrecio(Double.parseDouble(request.getParameter("precio")));
+		String a = request.getParameter("caducidad");
+		Date caducidad = null;
+		try {
+			caducidad = new SimpleDateFormat("yyyy-MM-dd").parse(a);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		producto.setCaducidad(caducidad);
+		producto.setSeccion(modeloSeccion.getSeccion(Integer.parseInt(request.getParameter("seccion"))));
+		
+		
+		modeloProducto.modificarProducto(producto);
+		
+		response.sendRedirect("ControladorVerProductos");
+				
+				
 	}
 
 }

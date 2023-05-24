@@ -52,9 +52,9 @@
 			      <td>${producto.seccion.nombre}</td>
 			      <td>
 			      
-			      <a href="ControladorModificarProducto"><button type="button" class="btn btn-success">Modificar</button></a>
+			      <a href="ControladorModificarProducto?id=${producto.id}"><button type="button" class="btn btn-success">Modificar</button></a>
 			      	
-			      <a href="ControladorEliminarProducto"><button type="button" class="btn btn-danger">Eliminar</button></a>
+			      <a href="ControladorEliminarProducto?id=${producto.id}"><button type="button" class="btn btn-danger">Eliminar</button></a>
 			      
 			      </td>
 			    </tr>

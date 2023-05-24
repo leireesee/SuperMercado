@@ -25,38 +25,43 @@
 
 	<div style="width: 500px; box-shadow:0px 0px 15px lightblue; padding: 30px">
 	
-	<h1>Insertar producto</h1>
+	<h1>Modificar producto</h1>
 	
 	<br> 
 	
 	<c:if test="${mensaje ne null}">
 		<p style="padding: 15px; background-color: pink; border: 1px solid red; color: red">${mensaje}</p>
 	</c:if>
+		
+		<c:set var="producto" scope="request" value="${ producto }"/>
 	
 		<form action="ControladorModificarProducto" method="post">
+		
+			<input type="hidden" class="form-control" name="id" value="${producto.id }">
+			
 			<div class="mb-3">
 				<label for="exampleInputEmail1" class="form-label">Código</label>
-				<input type="text" class="form-control" name="codigo">
+				<input type="text" class="form-control" name="codigo" value="${producto.codigo }">
 			</div>
 			
 			<div class="mb-3">
 				<label for="exampleInputPassword1" class="form-label">Nombre</label>
-				<input type="text" class="form-control" name="nombre">
+				<input type="text" class="form-control" name="nombre" value="${producto.nombre }">
 			</div>
 			
 			<div class="mb-3">
 				<label for="exampleInputPassword1" class="form-label">Cantidad</label>
-				<input type="number" class="form-control" name="cantidad">
+				<input type="number" class="form-control" name="cantidad" value="${producto.cantidad }">
 			</div>
 			
 			<div class="mb-3">
 				<label for="exampleInputPassword1" class="form-label">Precio</label>
-				<input type="number" class="form-control" name="precio">
+				<input type="number" class="form-control" name="precio" value="${producto.precio }">
 			</div>
 			
 			<div class="mb-3">
 				<label for="exampleInputPassword1" class="form-label">Caducidad</label>
-				<input type="date" class="form-control" name="caducidad">
+				<input type="date" class="form-control" name="caducidad" value="${producto.caducidad }">
 			</div>
 			
 			<div class="mb-3">
@@ -64,7 +69,12 @@
 				<select class="form-select" aria-label="Default select example" name="seccion">
 					  <option value="0"></option>
 					  <c:forEach items="${secciones}" var="seccion">
-					  	<option value="${seccion.id}">${seccion.nombre}</option>
+					  	<c:if test="${seccion.id == producto.seccion.id }">
+					  		<option selected value="${seccion.id}">${seccion.nombre}</option>
+					  	</c:if>
+					  	<c:if test="${seccion.id != producto.seccion.id }">
+					  		<option value="${seccion.id}">${seccion.nombre}</option>
+					  	</c:if>
 					  </c:forEach>
 					  
 				</select>

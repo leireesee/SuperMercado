@@ -105,7 +105,7 @@ public class ModeloProducto extends Conector{
 	
 	public void modificarProducto(Producto producto) {
 		
-		String sentenciaModificarProducto = "UPDATE productos SET codigo = ?, nombre = ?, cantidad = ?, precio = ?, caducidad = ?, seccion = ? WHERE id = ?";
+		String sentenciaModificarProducto = "UPDATE productos SET codigo = ?, nombre = ?, cantidad = ?, precio = ?, caducidad = ?, id_seccion = ? WHERE id = ?";
 		
 		try {
 			
@@ -120,6 +120,8 @@ public class ModeloProducto extends Conector{
 			
 			st.setInt(7, producto.getId());
 			
+			st.execute();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -129,7 +131,7 @@ public class ModeloProducto extends Conector{
 	
 	public Producto getProducto(int id) {
 		
-		String sentenciaGetProducto = "SELET * FROM productos WHERE id = ?";
+		String sentenciaGetProducto = "SELECT * FROM productos WHERE id = ?";
 		Producto producto = new Producto();
 		ModeloSeccion modeloSeccion = new ModeloSeccion();
 		
@@ -144,7 +146,7 @@ public class ModeloProducto extends Conector{
 			rst.next();
 			
 			producto.setId(rst.getInt("id"));
-			producto.setNombre(rst.getString("codigo"));
+			producto.setCodigo(rst.getString("codigo"));
 			producto.setNombre(rst.getString("nombre"));
 			producto.setCantidad(rst.getInt("cantidad"));
 			producto.setPrecio(rst.getDouble("precio"));
