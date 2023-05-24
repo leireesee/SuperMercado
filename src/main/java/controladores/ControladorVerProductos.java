@@ -46,22 +46,48 @@ public class ControladorVerProductos extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String buscado = request.getParameter("buscador");
-		
+		String botonClickado = request.getParameter("boton");
 		ModeloProducto modeloProducto = new ModeloProducto();
 		ArrayList<Producto> productos = modeloProducto.getProductos();
 		ArrayList<Producto> productos2 = new ArrayList<>();
 		
-		for (Producto producto : productos) {
-			if (producto.getNombre().contains(buscado) || producto.getCodigo().contains(buscado)) {
+		if(botonClickado.equals("buscar")) {
+			
+			String buscado = request.getParameter("buscador");
+			
+			for (Producto producto : productos) {
 				
-				productos2.add(producto);
-								
+				if (producto.getNombre().contains(buscado) || producto.getCodigo().contains(buscado)) {
+					
+					productos2.add(producto);
+									
+				}
+				
 			}
+			
 		}
 		
-		request.setAttribute("productos", productos2);
 		
+		if (botonClickado.equals("filtrar_precio")) {
+			
+			Double precioMinBuscado = Double.parseDouble(request.getParameter("precio_min"));
+			Double precioMaxBuscado = Double.parseDouble(request.getParameter("precio_max"));
+			
+			for (Producto producto : productos) {
+				
+				if (producto.getPrecio() >= precioMinBuscado && producto.getPrecio() <= precioMaxBuscado) {
+					
+					productos2.add(producto);
+					
+				}
+				
+			}
+			
+			
+		}
+		
+		
+		request.setAttribute("productos", productos2);
 	
 		request.getRequestDispatcher("VistaVerProductos.jsp").forward(request, response);
 	}

@@ -19,7 +19,15 @@
   		
   		<form class="d-flex" role="search" method="post" action="ControladorVerProductos">
         	<input class="form-control me-2" type="search" placeholder="Buscar" name="buscador">
-        	<button class="btn btn-secondary" type="submit">Buscar</button>
+        	<button class="btn btn-secondary" type="submit" name="boton" value="buscar">Buscar</button>
+      	</form>
+      	
+      	<form class="d-flex" role="search" method="post" action="ControladorVerProductos">
+      		<div class="d-md-flex justify-content-md-start w-50">
+	      		<input class="form-control me-2" type="search" placeholder="Precio Min" name="precio_min">
+	        	<input class="form-control me-2" type="search" placeholder="Precio Max" name="precio_max">
+      		</div>
+        	<button class="btn btn-secondary" type="submit" name="boton" value="filtrar_precio">Filtrar</button>
       	</form>
       
 	</div>
