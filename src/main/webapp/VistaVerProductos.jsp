@@ -16,6 +16,12 @@
 	<br>
 	<div class="d-grid gap-2 d-md-flex justify-content-md-start">
   		<a href="ControladorInsertarProducto"><button class="btn btn-primary" type="button">Insertar Producto</button></a>
+  		
+  		<form class="d-flex" role="search" method="post" action="ControladorVerProductos">
+        	<input class="form-control me-2" type="search" placeholder="Buscar" name="buscador">
+        	<button class="btn btn-secondary" type="submit">Buscar</button>
+      	</form>
+      
 	</div>
 	
 	<br>

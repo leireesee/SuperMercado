@@ -45,7 +45,26 @@ public class ControladorVerProductos extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		
+		String buscado = request.getParameter("buscador");
+		
+		ModeloProducto modeloProducto = new ModeloProducto();
+		ArrayList<Producto> productos = modeloProducto.getProductos();
+		ArrayList<Producto> productos2 = new ArrayList<>();
+		
+		for (Producto producto : productos) {
+			if (producto.getNombre().contains(buscado) || producto.getCodigo().contains(buscado)) {
+				
+				productos2.add(producto);
+								
+			}
+		}
+		
+		request.setAttribute("productos", productos2);
+		
+	
+		request.getRequestDispatcher("VistaVerProductos.jsp").forward(request, response);
 	}
+	
 
 }
