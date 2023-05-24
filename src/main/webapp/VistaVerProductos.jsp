@@ -33,7 +33,16 @@
 	</div>
 	
 	<br>
+	
+	<div class="d-grid gap-2 d-md-flex justify-content-md-start">
+		<form action="ControladorOrdenadorDeCodigo" method="get">
+			<button class="btn btn-secondary" type="submit" name="ordenar" value="ascendente">Orden ASC</button>
+			<button class="btn btn-secondary" type="submit" name="ordenar" value="descendente">Ordenar DESC</button>
+		</form>
+	</div>
+	
 	<br>
+
 	
 		
 		<table class="table table-striped">
