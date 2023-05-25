@@ -1,6 +1,8 @@
 package controladores;
 
 import java.io.IOException;
+
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.dao.ModeloProducto;
+import modelo.dao.ModeloSupermercado;
+import modelo.dao.ModeloProductoSupermercado;
 import modelo.dao.ModeloSeccion;
 import modelo.dto.Producto;
 
@@ -38,8 +42,11 @@ public class ControladorInsertarProducto extends HttpServlet {
 		//	- el arraylist de secciones para el select
 		
 		ModeloSeccion modeloSeccion = new ModeloSeccion();
+		ModeloSupermercado modeloSupermercado = new ModeloSupermercado();
 		
 		request.setAttribute("secciones", modeloSeccion.getSecciones());
+		
+		request.setAttribute("supermercados", modeloSupermercado.getSupermercados());
 		
 		request.getRequestDispatcher("FormularioInsertar.jsp").forward(request, response);
 	}
@@ -53,6 +60,7 @@ public class ControladorInsertarProducto extends HttpServlet {
 		SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
 		ModeloSeccion modeloSeccion = new ModeloSeccion();
 		ModeloProducto modeloProducto = new ModeloProducto();
+		ModeloProductoSupermercado modeloProductoSupermercado = new ModeloProductoSupermercado();
 		
 		producto.setCodigo(request.getParameter("codigo"));
 		producto.setNombre(request.getParameter("nombre"));
@@ -89,10 +97,14 @@ public class ControladorInsertarProducto extends HttpServlet {
 			
 			modeloProducto.insertarProducto(producto);
 			
+			int id_producto = modeloProducto.ultimoIdProducto();
+			int id_supermercado = Integer.parseInt(request.getParameter("id_supermercado"));
+			
+			modeloProductoSupermercado.insertarProductoSupermercado(id_producto, id_supermercado);
+			
 		}
-		
-		
-		request.getRequestDispatcher("ControladorVerProductos").forward(request, response);
+				
+		response.sendRedirect("ControladorVerProductos");
 		
 	}
 

@@ -70,6 +70,20 @@
 				</select>
 			</div>
 			
+			<div class="mb-3">
+				<label for="exampleInputPassword1" class="form-label">Supermercado</label>
+				<br>			
+				<c:forEach items="${supermercados}" var="supermercado">
+					<input class="form-check-input" type="checkbox" value="${supermercado.id }" id="flexCheckDefault" name="id_supermercado">
+					<label class="form-check-label" for="flexCheckDefault">
+			   			${supermercado.nombre }
+			  		</label>
+			  		<br>
+				</c:forEach>			
+				
+			</div>
+			<br> 
+			<br> 
 			<button type="submit" class="btn btn-primary">Insertar</button>
 			
 		</form>

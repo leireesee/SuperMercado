@@ -164,4 +164,32 @@ public class ModeloProducto extends Conector{
 		
 	}
 	
+	
+	public int ultimoIdProducto() {
+		
+		String sentenciaUltimoIdProducto = "SELECT max(id) FROM productos";
+		int id_producto;
+		
+		try {
+			
+			PreparedStatement st = this.conexion.prepareStatement(sentenciaUltimoIdProducto);
+			
+			ResultSet rst = st.executeQuery();
+			
+			rst.next();
+			
+			id_producto = rst.getInt("max(id)");
+			
+			return id_producto;
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return -1;
+		
+	}
+	
 }
