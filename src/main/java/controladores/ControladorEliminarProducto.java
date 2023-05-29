@@ -2,6 +2,7 @@ package controladores;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 
 import modelo.dao.ModeloProducto;
 import modelo.dto.Producto;
@@ -70,7 +73,31 @@ public class ControladorEliminarProducto extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		doGet(request, response);
+		String buscadoEliminar = request.getParameter("buscador_eliminar");
+		
+		String[] codigos = buscadoEliminar.split(",");
+				
+		ModeloProducto modeloProducto = new ModeloProducto();
+		
+		boolean todosCodigosExisten = true;
+		
+		for (String codigo : codigos) {
+			
+			if (modeloProducto.verificarExistenciaPorCodigoProducto(codigo) == false) {
+				todosCodigosExisten = false;
+			}
+			
+		}
+		
+		if (todosCodigosExisten == true) {
+			
+			for (String codigo : codigos) {
+				modeloProducto.eliminarProductoPorCodigo(codigo);
+			}
+			
+		}
+		
+		response.sendRedirect("ControladorVerProductos");
 		
 	}
 

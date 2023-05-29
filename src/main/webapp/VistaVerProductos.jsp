@@ -29,6 +29,11 @@
       		</div>
         	<button class="btn btn-secondary" type="submit" name="boton" value="filtrar_precio">Filtrar</button>
       	</form>
+      	
+      	<form class="d-flex" role="search" method="post" action="ControladorEliminarProducto">
+      		<input class="form-control me-2" type="text" placeholder="Buscar para eliminar" name="buscador_eliminar">
+      		<button class="btn btn-danger" type="submit" name="boton" value="buscar_eliminar">Eliminar</button>
+      	</form>
       
 	</div>
 	

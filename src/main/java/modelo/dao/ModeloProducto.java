@@ -208,8 +208,49 @@ public class ModeloProducto extends Conector{
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public void eliminarProductoPorCodigo(String cod_producto) {
 		
+		String sentenciaEliminarProductoPorCodigo = "DELETE FROM productos WHERE codigo = ?";
 		
+		try {
+			PreparedStatement st = this.conexion.prepareStatement(sentenciaEliminarProductoPorCodigo);
+			
+			st.setString(1, cod_producto);
+			
+			st.execute();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public boolean verificarExistenciaPorCodigoProducto(String codigo) {
+		
+		String sentenciaVerificarExistenciaPorCodigoProducto = "SELECT * FROM productos WHERE codigo = ?";
+		
+		try {
+			PreparedStatement st = this.conexion.prepareStatement(sentenciaVerificarExistenciaPorCodigoProducto);
+			
+			st.setString(1, codigo);
+									
+			ResultSet rst = st.executeQuery();
+						
+			
+			if (rst.next()) {
+				
+				return true;
+				
+			}					
+			
+		} catch (SQLException e) {
+			
+		}
+				
+		return false;
 	}
 	
 }
