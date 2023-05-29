@@ -192,4 +192,24 @@ public class ModeloProducto extends Conector{
 		
 	}
 	
+	public void eliminarProducto(int id) {
+		
+		String sentenciaEliminarProducto = "DELETE FROM productos WHERE id = ?";
+		
+		try {
+			PreparedStatement st = this.conexion.prepareStatement(sentenciaEliminarProducto);
+			
+			st.setInt(1, id);
+			
+			st.execute();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+	
 }
