@@ -47,13 +47,15 @@
 	</div>
 	
 	<br>
-
 	
-		
-		<table class="table table-striped">
+		<form action="ControladorEliminarProducto" method="post">
+				
+			<table class="table table-striped">
 		
 			  <thead>
 			    <tr>
+			      <th scope="col"><a href="ControladorEliminarProducto?id=${producto.id}">
+			      <button type="submit" class="btn btn-warning" name="boton_eliminar_seleccionados" value="${producto.id }">Eliminar</button></a></th>
 			      <th scope="col">ID</th>
 			      <th scope="col">Codigo</th>
 			      <th scope="col">Nombre</th>
@@ -70,6 +72,9 @@
 			
 			  <tbody>
 			    <tr>
+			      <th style="padding-left: 40px">
+			      		<input class="form-check-input" type="checkbox" value="${producto.id }" id="flexCheckDefault" name="eliminar_seleccionados">
+			      </th>
 			      <th scope="row">${producto.id}</th>
 			      <td>${producto.codigo}</td>
 			      <td>${producto.nombre}</td>
@@ -90,6 +95,12 @@
 			  
 			 </c:forEach>
 		</table>
+
+	</form>		
+
+	
+		
+		
 	
 			
 </body>

@@ -62,6 +62,8 @@ public class ControladorEliminarProducto extends HttpServlet {
 			modeloProducto.eliminarProducto(Integer.parseInt(request.getParameter("id")));
 			
 		}
+		
+		
 	
 		
 		response.sendRedirect("ControladorVerProductos");
@@ -73,29 +75,44 @@ public class ControladorEliminarProducto extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String buscadoEliminar = request.getParameter("buscador_eliminar");
+		String buscadoEliminar = request.getParameter("boton");
+		String[] eliminarSeleccionados = request.getParameterValues("eliminar_seleccionados");
 		
-		String[] codigos = buscadoEliminar.split(",");
-				
-		ModeloProducto modeloProducto = new ModeloProducto();
 		
-		boolean todosCodigosExisten = true;
-		
-		for (String codigo : codigos) {
+		if (buscadoEliminar != null) {//boton de eliminar por codigo
+			String[] codigos = buscadoEliminar.split(",");
 			
-			if (modeloProducto.verificarExistenciaPorCodigoProducto(codigo) == false) {
-				todosCodigosExisten = false;
-			}
+			ModeloProducto modeloProducto = new ModeloProducto();
 			
-		}
-		
-		if (todosCodigosExisten == true) {
+			boolean todosCodigosExisten = true;
 			
 			for (String codigo : codigos) {
-				modeloProducto.eliminarProductoPorCodigo(codigo);
+				
+				if (modeloProducto.verificarExistenciaPorCodigoProducto(codigo) == false) {
+					todosCodigosExisten = false;
+				}
+				
 			}
 			
+			if (todosCodigosExisten == true) {
+				
+				for (String codigo : codigos) {
+					modeloProducto.eliminarProductoPorCodigo(codigo);
+				}
+				
+			}
 		}
+		
+		if (eliminarSeleccionados != null) {//boton de eliminar por checkbox
+			
+			ModeloProducto modeloProducto = new ModeloProducto();
+			
+			for (String productoCheckeado : eliminarSeleccionados) {
+				modeloProducto.eliminarProducto(Integer.parseInt(productoCheckeado));
+			}
+				
+		}
+		
 		
 		response.sendRedirect("ControladorVerProductos");
 		
