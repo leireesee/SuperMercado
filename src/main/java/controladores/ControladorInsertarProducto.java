@@ -98,9 +98,11 @@ public class ControladorInsertarProducto extends HttpServlet {
 			modeloProducto.insertarProducto(producto);
 			
 			int id_producto = modeloProducto.ultimoIdProducto();
-			int id_supermercado = Integer.parseInt(request.getParameter("id_supermercado"));
+			String[] id_supermercado = request.getParameterValues("id_supermercado");
 			
-			modeloProductoSupermercado.insertarProductoSupermercado(id_producto, id_supermercado);
+			for (String id : id_supermercado) {
+				modeloProductoSupermercado.insertarProductoSupermercado(id_producto, Integer.parseInt(id));
+			}
 			
 		}
 				
