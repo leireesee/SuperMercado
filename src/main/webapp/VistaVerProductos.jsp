@@ -9,7 +9,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
-<title>SuperMercado > Productos</title>
+<title>SuperMercado - Productos</title>
 </head>
 <body>
 	
@@ -35,6 +35,11 @@
       		<button class="btn btn-danger" type="submit" name="boton" value="buscar_eliminar">Eliminar</button>
       	</form>
       
+      	<form class="d-flex" role="search" method="post" action="ControladorVerProductos">
+      		<input class="form-control me-2" type="text" placeholder="" name="buscador_eliminar">
+      		<button class="btn btn-secondary" type="submit" name="boton" value="buscar_caracter">Buscar</button>
+      	</form>
+      
 	</div>
 	
 	<br>
@@ -44,6 +49,18 @@
 			<button class="btn btn-secondary" type="submit" name="ordenar" value="ascendente">Orden ASC</button>
 			<button class="btn btn-secondary" type="submit" name="ordenar" value="descendente">Ordenar DESC</button>
 		</form>
+		
+		<a href="ControladorVerProductos?orden=asc">Ordenar Precio ASC</a>
+		<a href="ControladorVerProductos?orden=desc">Ordenar Precio DESC</a>
+		
+		<form action="ControladorVerProductos" method="post">
+			<button class="btn btn-secondary" type="submit" name="ordenar" value="seccion_nombre_ascendente">Orden Seccion ASC</button>
+			<button class="btn btn-secondary" type="submit" name="ordenar" value="seccion_nombre_descendente">Orden Seccion DESC</button>
+		</form>
+		
+		<a href="ControladorVerProductos?orden=fecha_asc">Ordenar Fecha ASC</a>
+		<a href="ControladorVerProductos?orden=fecha_desc">Ordenar Fecha DESC</a>
+		
 	</div>
 	
 	<br>

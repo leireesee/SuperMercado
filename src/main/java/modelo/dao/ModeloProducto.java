@@ -151,7 +151,7 @@ public class ModeloProducto extends Conector{
 			producto.setCantidad(rst.getInt("cantidad"));
 			producto.setPrecio(rst.getDouble("precio"));
 			producto.setCaducidad(rst.getDate("caducidad"));
-			producto.setSeccion(modeloSeccion.getSeccion(rst.getInt("id_seccion")));
+			producto.setSeccion(modeloSeccion.getSeccion(rst.getInt("id")));
 			
 			return producto;
 			

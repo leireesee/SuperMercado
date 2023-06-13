@@ -82,6 +82,8 @@
 				</c:forEach>			
 				
 			</div>
+			<br>
+			
 			<br> 
 			<br> 
 			<button type="submit" class="btn btn-primary">Insertar</button>
